@@ -1,0 +1,16 @@
+<app-layout>
+  <mat-toolbar class="arkah" role="heading">
+    <h1>Tables des employés</h1>
+     <p>
+      <button mat-button type="submit" class="btn btn-outline-success" routerLinkActive="list-item-active" routerLink="/ajoutG" >Ajout des employés</button>
+     </p>
+  </mat-toolbar>
+
+  <div class="tables-wrapper">
+    
+    <app-tableemployee [employeeTableData]="employeeTableData$ | async"></app-tableemployee>
+   
+  </div>
+
+  <app-footer></app-footer>
+</app-layout>

@@ -1,0 +1,94 @@
+<mat-card class="employee-table-wrapper">
+  <mat-card-title class="employee-table-wrapper__header">
+    <p *ngIf="!isShowFilterInput" class="employee-table-wrapper__title">Liste des groups</p>
+    <div *ngIf="isShowFilterInput" class="employee-table-wrapper__search">
+      <div class="employee-table-wrapper__icon-wrapper">
+        <mat-icon class="employee-table-wrapper__icon">search</mat-icon>
+      </div>
+      <input matInput class="employee-table-wrapper__search-input" (keyup)="applyFilter($event)">
+      <button class="employee-table-wrapper__button" mat-mini-fab (click)="showFilterInput()">
+        <mat-icon class="employee-table-wrapper__icon">close</mat-icon>
+      </button>
+    </div>
+    <button class="employee-table-wrapper__button" mat-mini-fab (click)="showFilterInput()">
+      <mat-icon class="employee-table-wrapper__icon">search</mat-icon>
+    </button>
+  </mat-card-title>
+  <mat-card-content class="employee-table__content">
+    <table class="employee-table__table" mat-table [dataSource]="dataSource">
+
+
+      <!-- Nom Column -->
+      <ng-container matColumnDef="nom" >
+        <th class="employee-table__table-header" mat-header-cell *matHeaderCellDef > Nom </th>
+        <td class="employee-table__table-body" mat-cell *matCellDef="let element"> {{element.nom}} </td>
+      </ng-container>
+
+      <!-- description Column -->
+      <ng-container matColumnDef="description">
+        <th class="employee-table__table-header" mat-header-cell *matHeaderCellDef> Description </th>
+        <td class="employee-table__table-body" mat-cell *matCellDef="let element"> {{element.description}} </td>
+      </ng-container>
+
+      <!-- actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell  *matHeaderCellDef > Actions </th>
+        <td mat-cell *matCellDef="let row" >
+             <button type="button" class="btn btn-outline-success btn-sm mb-2 "(click)="openModal()" title="mise à jour" >
+              <mat-icon>note_add</mat-icon>
+             </button>
+             &nbsp;
+             <button class="btn btn-outline-info btn-sm mb-2 "  title="plus d'information" >
+               <mat-icon>info</mat-icon> 
+              </button>
+             &nbsp;
+             <button class="btn btn-outline-danger btn-sm mb-2 "  title="supprimer" >
+              <mat-icon>clear</mat-icon>
+             </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+          (click)="selection.toggle(row)">
+      </tr>
+    </table>
+  </mat-card-content>
+  <div class="pagination">
+    <mat-paginator [pageSizeOptions]="[10, 15, 100]" showFirstLastButtons></mat-paginator>
+  </div>
+</mat-card>
+
+<div class="modal show" id="exampleModal" tabindex="-1" role="dialog" [ngStyle]="{}">
+  <div class="modal-dialog " role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Mise à jour</h5>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <h6>Nom</h6>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="le nom de l'employée">
+          </div>
+          <div class="form-group">
+            <h6>prenom</h6>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="prenom de l'employée">
+          </div>
+          <div class="form-group">
+            <h6>id</h6>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Id">
+          </div>
+          <div class="form-group">
+            <h6>address mail</h6>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="email">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline-dark mb-2"  >Close</button>
+        <button class="btn btn-outline-primary mb-2">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,12 +1,16 @@
-<div class="container-fluid page">
-    <div class="d-flex page__box p-3 mt-2"></div>
-    <div class="page__content shadow p-3 position-relative">
-        <div class="arkah">
-            <p >Tableaux des structures</p>
-            <p>
-             <button mat-button type="submit" class="btn btn-outline-success" routerLinkActive="list-item-active" routerLink="/ajoutS" >Ajout du structure</button>
-            </p>
-         </div>
-        <app-tablestructure></app-tablestructure>
- </div>
-</div>
+<app-layout>
+    <mat-toolbar class="arkah" role="heading">
+      <h1>Tables des structures</h1>
+       <p>
+        <button mat-button type="submit" class="btn btn-outline-success" routerLinkActive="list-item-active" routerLink="/ajoutG" >Ajout d'une structure</button>
+       </p>
+    </mat-toolbar>
+  
+    <div class="tables-wrapper">
+      
+       <app-tablestructure [structureTableData]="structureTableData$ | async"></app-tablestructure>
+     
+    </div>
+  
+    <app-footer></app-footer>
+  </app-layout>

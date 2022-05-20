@@ -1,3 +1,4 @@
+import { StructureService } from './services/structure.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule} from '@angular/material/card';
@@ -26,7 +27,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
     ],
     imports: [
       CommonModule,
-      StructureRoutingModule ,
+      StructureRoutingModule,
       MatCardModule,
       MatIconModule,
       MatMenuModule,
@@ -40,6 +41,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
       SharedModule
     ],
     providers: [
+      StructureService
     ]
   })
   export class StructureModule { }
